@@ -27,33 +27,44 @@ btnGuess.addEventListener("click", function () {
   console.log(guessNum);
 
   if (guessNum >= 1 && guessNum <= 50) {
-    if (ranNum === guessNum) {
-      output.textContent = "your guess is correct";
-      output.style.backgroundColor = "#4f772d";
-      errorMsg.style.display = "none";
-      Score = guesses;
-      highScore.innerText = Score;
+    if (guesses < 1) {
       btnReset.style.display = "block";
-      num.value = "";
-      if (Score < guesses) {
-        highScore.innerText = guesses;
-      } //else{
-      //   highScore.innerText ="";
-      // }
-    } else if (ranNum > guessNum) {
-      output.textContent = "your guess is too low";
-      output.style.backgroundColor = "#4f772d";
-      errorMsg.style.display = "none";
-      guesses--;
-      guessesLeft.innerText = guesses;
-      num.value = "";
-    } else if (ranNum < guessNum) {
-      output.textContent = "your guess is too high";
-      output.style.backgroundColor = "#4f772d";
-      errorMsg.style.display = "none";
-      guesses--;
-      guessesLeft.innerText = guesses;
-      num.value = "";
+      btnGuess.style.display = "none";
+      output.textContent = "game over please reset...";
+    } else {
+      if (ranNum === guessNum) {
+        output.textContent = "your guess is correct";
+        output.style.backgroundColor = "#4f772d";
+        errorMsg.style.display = "none";
+        btnReset.style.display = "block";
+        inputNum.value = "";
+        btnGuess.style.display = "none";
+        let currentScore = Score;
+        let currentGuessesLeft = guesses;
+        console.log(currentScore);
+        console.log(currentGuessesLeft);
+        if (currentScore <= currentGuessesLeft) {
+          Score = guesses;
+          highScore.innerText = Score;
+          highScore.innerText = currentGuessesLeft;
+        } else {
+          highScore.innerText = currentScore;
+        }
+      } else if (ranNum > guessNum) {
+        output.textContent = "your guess is too low";
+        output.style.backgroundColor = "#4f772d";
+        errorMsg.style.display = "none";
+        guesses--;
+        guessesLeft.innerText = guesses;
+        inputNum.value = "";
+      } else if (ranNum < guessNum) {
+        output.textContent = "your guess is too high";
+        output.style.backgroundColor = "#4f772d";
+        errorMsg.style.display = "none";
+        guesses--;
+        guessesLeft.innerText = guesses;
+        inputNum.value = "";
+      }
     }
   } else {
     // alert("please enter a number between a range"); //alert will refresh our page when it refresh our random num changes so don't use it
@@ -64,8 +75,9 @@ btnGuess.addEventListener("click", function () {
 btnReset.addEventListener("click", () => {
   guesses = 10;
   guessesLeft.innerText = guesses;
-  output.textContent = "";
+  inputNum.value = "";
   ranNum = randomNum();
   console.log(ranNum);
+  btnGuess.style.display = "block";
   btnReset.style.display = "none";
 });
