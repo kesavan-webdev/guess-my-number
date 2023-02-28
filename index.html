@@ -15,9 +15,14 @@
 </head>
 
 <body>
+  <header class="card-header">
+    <h4>highscore:<span class="highscore" id="highscore">0</span></h4>
+    <h4>Guesses Left:<span class="guesses" id="guesses">10</span></h4>
+  </header>
   <main class="card" id="card">
     <h1 class="card-title">Guess my Number</h1>
     <p>Range between 1-50</p>
+    <div class="error" id="error"><strong>*please make sure your number is between a Given Range</strong></div>
     <div class="card-container">
       <input type="number" name="" id="guess-num" class="guess-num">
     </div>
@@ -31,6 +36,9 @@
     </div>
 
   </main>
+
+  <footer class="footer"><button type="reset" class="btn-reset" id="btn-reset">Reset</button></footer>
+  <script src="./script/script.js"></script>
 </body>
 
 </html>
