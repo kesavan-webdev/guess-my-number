@@ -76,6 +76,8 @@ btnReset.addEventListener("click", () => {
   guesses = 10;
   guessesLeft.innerText = guesses;
   inputNum.value = "";
+  output.textContent = "";
+
   ranNum = randomNum();
   console.log(ranNum);
   btnGuess.style.display = "block";
